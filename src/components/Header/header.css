@@ -97,9 +97,10 @@
    display: flex;
    align-items: center;
    flex-direction: column; 
-   background: var(--card-bg-01);
+   background: var(--primary-color);
    line-height: 30px;
-   display: none;
+   color:#ddd;
+   /* display: none; */
    cursor: pointer;
 }
 .show__profileActions{

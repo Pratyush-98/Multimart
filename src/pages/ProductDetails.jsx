@@ -10,6 +10,7 @@ import ProductsList from '../components/UI/ProductsList';
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../components/redux/slice/cartSlice';
 import { toast } from 'react-toastify';
+import {db} from '../firebase.config'
 
 const ProductDetails = () => {
 

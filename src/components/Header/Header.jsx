@@ -10,6 +10,8 @@ import useAuth from '../../custom-hooks/useAuth';
 import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase.config';
+import {toast} from 'react-toastify';
+
 
 const nav__links = [
   {
@@ -46,6 +48,15 @@ const stickyHeaderFunc = () =>{
   });
 };
 
+const logout = () =>{
+  signOut(auth).then(()=>{
+    toast.success('logged out')
+    navigate('/home')
+  }).catch(err=>{
+    toast.error(err.message)
+  })
+}
+
 useEffect(() =>{
   stickyHeaderFunc();
 
@@ -55,7 +66,7 @@ useEffect(() =>{
 const menuToggle = () => menuRef.current.classList.toggle('active__menu');
 const navigateToCart = () =>{
       navigate('/cart')
-}
+};
 const toggleProfileActions = ()  => profileActionRef.current.classList.toggle('show__profileActions');
 
   return( 
@@ -95,10 +106,12 @@ const toggleProfileActions = ()  => profileActionRef.current.classList.toggle('s
               src={ currentUser ? currentUser.photoURL : userIcon } alt="" onClick = {toggleProfileActions}/>
               <div className="profile__actions" ref = {profileActionRef} onClick = {toggleProfileActions}>
                 {
-                  currentUser ? <span>Logout</span> : <div>
+                  currentUser ? (<span onClick={logout}>Logout</span>) : (
+                  <div className='d-flex align-items-center justify-content-center flex-column'>
                     <Link to = '/signup'> Signup </Link>
                     <Link to ='/login'>Login</Link>
-                  </div>
+                    <Link to ='/dashboard'>Dashboard</Link>
+                  </div>)
                 }
               </div>
             </div>

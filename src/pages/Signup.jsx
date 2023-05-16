@@ -5,10 +5,10 @@ import {Container, Row, Col, Form, FormGroup} from 'reactstrap';
 import { createUserWithEmailAndPassword , updateProfile} from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { auth } from '../firebase.config';
-import { storage } from '../firebase.config';
+import { db, storage } from '../firebase.config';
 import { setDoc, doc } from 'firebase/firestore';
 import { toast } from 'react-toastify'; 
-import { db } from '../firebase.config';
+// import { db } from '../firebase.config';
 import { useNavigate } from 'react-router-dom';
 import '../styles/login.css';
 

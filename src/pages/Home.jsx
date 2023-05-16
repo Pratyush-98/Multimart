@@ -10,9 +10,10 @@ import '../styles/home.css';
 import ProductsList from '../components/UI/ProductsList';
 import counterImg from'../assets/images/counter-timer-img.png';
 import Clock from '../components/UI/Clock';
+// import useGetData from '../custom-hooks/useGetData';
 const Home = () => {
 
-
+  // const {data : products, loading} = useGetData('products');
   const[trendingProducts, setTrendingProducts] = useState([]);
   const[bestSalesProducts, setBestSalesProducts] = useState([]);
   const [mobileProducts, setMobileProducts] = useState([]);
@@ -34,7 +35,7 @@ const Home = () => {
     setMobileProducts(filteredMobileProducts);
     setWirelessProducts(filteredWirelessProducts);
     setPopularProducts(filteredPopularProducts);
-  }, []);
+  }, [products]);
   return (
   <Helmet title = {'Home'}>
     <section className="hero__section">
@@ -65,7 +66,8 @@ const Home = () => {
           <Col lg='12' className='text-center'>
             <h2 className='section__title'>Trending Prducts</h2>
           </Col>
-          <ProductsList data={trendingProducts} />
+            <ProductsList data={trendingProducts} />
+          
         </Row>
       </Container>
     </section>
@@ -76,7 +78,9 @@ const Home = () => {
           <Col lg='12' className='text-center'>
             <h2 className='section__title'>Best Sales</h2>
           </Col>
-          <ProductsList data={bestSalesProducts} />
+       
+            <ProductsList data={bestSalesProducts} />
+          
         </Row>
       </Container>
     </section>
@@ -107,8 +111,11 @@ const Home = () => {
           <Col lg='12' className='text-center mb-5'>
            <h2 className='section__title'> New Arrivals </h2>
           </Col>
-          <ProductsList data={mobileProducts} />
-          <ProductsList data={wirelessProducts} />
+            <ProductsList data={mobileProducts} />
+          
+            
+  
+            <ProductsList data={wirelessProducts} />
         </Row>
       </Container>
     </section>
