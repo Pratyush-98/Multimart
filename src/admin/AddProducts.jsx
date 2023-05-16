@@ -6,7 +6,7 @@ import {ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
 import{collection, addDoc} from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
-const AddProduct = () => {
+const AddProducts = () => {
 
   const [enterTitle, setEnterTitle] = useState('');
   const [enterShortDesc, setEnterShortDesc] = useState('');
@@ -28,15 +28,17 @@ const AddProduct = () => {
     //   price:enterPrice,
     //   imgUrl:enterProductImg,
     // };
+    //add products to firebase firestore
+    // const productRef = addDoc(collection(db,'products'));
     try {
-      const docRef = await collection(db, 'products');
+      // const docRef = await (collection(db, 'products'));
       const storageRef = ref(storage, `productImages/${Date.now() + enterProductImg.name}`)
       const uploadTask = uploadBytesResumable(storageRef, enterProductImg);
       uploadTask.on(()=>{
         toast.error('images not uploaded!')
       },() =>{
         getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL) =>{
-        await addDoc(docRef,{
+        await addDoc(collection(db, 'products'),{
           productName:enterTitle,
           shortDesc:enterShortDesc,
           description:enterDescription,
@@ -117,4 +119,4 @@ const AddProduct = () => {
   )
 };
 
-export default AddProduct;
+export default AddProducts;
