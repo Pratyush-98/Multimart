@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import './header.css';
 import {motion} from 'framer-motion';
 import logo from '../../assets/images/eco-logo.png';
-import userIcon from '../../assets/images/user-icon.png';
+import userIcon from '../../assets/images/user-icon.jpg';
 import { Container, Row } from "reactstrap";
 import { useSelector } from 'react-redux';
 import useAuth from '../../custom-hooks/useAuth';
@@ -102,15 +102,16 @@ const toggleProfileActions = ()  => profileActionRef.current.classList.toggle('s
               <span className='badge'>{totalQuantity}</span>
             </span>
             <div className='profile'>
-              <motion.img whileTap={{ scale: 1.2 }}
-              src={ currentUser ? currentUser.photoURL : userIcon } alt="" onClick = {toggleProfileActions}/>
+              <img src={userIcon}alt="" />
+              {/* <motion.img whileTap={{ scale: 1.2 }}
+              src={ currentUser ? currentUser.photoURL : userIcon } alt="" onClick = {toggleProfileActions}/> */}
               <div className="profile__actions" ref = {profileActionRef} onClick = {toggleProfileActions}>
                 {
                   currentUser ? (<span onClick={logout}>Logout</span>) : (
                   <div className='d-flex align-items-center justify-content-center flex-column'>
                     <Link to = '/signup'> Signup </Link>
                     <Link to ='/login'>Login</Link>
-                    <Link to ='/dashboard'>Dashboard</Link>
+                    <Link to ='/home'>Dashboard</Link>
                   </div>)
                 }
               </div>

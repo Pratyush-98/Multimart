@@ -76,7 +76,7 @@ const Signup = () => {
                           <input type="password" placeholder='Enter your password'
                           value={password} onChange={e=> setPassword(e.target.value)} />
                         </FormGroup>
-                        <FormGroup className='form__group'>
+                      <FormGroup className='form__group'>
                           <input type="file" 
                           onChange={e=> setFile(e.target.file[0])} />
                         </FormGroup>
